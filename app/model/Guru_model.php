@@ -20,11 +20,12 @@ class Guru_model {
     }
 
     public function tambahData($data){
-        $query = "INSERT INTO data_guru VALUES(null, :nama, :jenis_kelamin, :alamat )";
+        $query = "INSERT INTO data_guru VALUES(null, :nama, :jenis_kelamin, :alamat, :mapel )";
         $this->db->query($query);
         $this->db->bind('nama', $data['nama']);
         $this->db->bind('jenis_kelamin', $data['jenis_kelamin']);
         $this->db->bind('alamat', $data['alamat']);
+        $this->db->bind('mapel', $data['mapel']);
         $this->db->execute();
         return $this->db->rowCount();
     }
@@ -63,5 +64,3 @@ class Guru_model {
  
 
 }
-
-?>

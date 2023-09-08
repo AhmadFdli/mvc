@@ -1,15 +1,15 @@
 <div class="container mt-5">
-    <div class="row">
+    <div class="row" style="margin-top: 100px;">
         <div class="col-6">
             <?php FLasher::flash(); ?>
-            <h3>Daftar Guru</h3>
+            <h3>DAFTAR GURU</h3>
             <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#modol">
                 Tambah Guru
             </button>
             <!-- Modal -->
             <div class="modal fade" id="modol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+                    <div style="background-color: skyblue;" class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Tambah Guru</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -34,6 +34,10 @@
                                     <label for="alamat">Alamat</label>
                                     <input type="text" class="form-control" id="alamat" name="alamat" autocomplete="off">
                                 </div>
+                                <div class="form-group">
+                                    <label for="mapel">Mapel</label>
+                                    <input type="text" class="form-control" id="mapel" name="mapel" autocomplete="off">
+                                </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">
@@ -55,6 +59,9 @@
                         <center>Nama</center>
                     </th>
                     <th scope="col">
+                        <center>Mapel</center>
+                    </th>
+                    <th scope="col">
                         <center>Aksi</center>
                     </th>
                 </tr>
@@ -70,6 +77,9 @@
                             <center><?= $blog['nama'] ?></center>
                         </td>
                         <td>
+                            <center><?= $blog['mapel'] ?></center>
+                        </td>
+                        <td>
                             <center>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#moll<?= $blog['id'] ?>">
@@ -78,7 +88,7 @@
                                 <!-- Modal -->
                                 <div class="modal fade" id="moll<?= $blog['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
+                                        <div style="background-color: skyblue;" class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">Detail</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -100,6 +110,10 @@
                                                         <label for="alamat">Alamat</label>
                                                         <input type="text" class="form-control" value="<?= $blog['alamat'] ?>" id="alamat" name="alamat" readonly>
                                                     </div>
+                                                    <div class="form-group">
+                                                        <label for="mapel">Mapel</label>
+                                                        <input type="text" class="form-control" id="mapel" name="mapel" autocomplete="off">
+                                                    </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">
@@ -117,7 +131,7 @@
     <!-- Modal -->
     <div class="modal fade" id="exampleModal<?= $blog['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div style="background-color: skyblue;" class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ubah Data</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -147,6 +161,10 @@
                             <label for="alamat">Alamat</label>
                             <input type="text" class="form-control" value="<?= $blog['alamat'] ?>" id="alamat" name="alamat" autocomplete="off">
                         </div>
+                        <div class="form-group">
+                            <label for="mapel">Mapel</label>
+                            <input type="text" class="form-control" value="<?= $blog['mapel'] ?>" id="mapel" name="mapel" autocomplete="off">
+                        </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">
@@ -168,3 +186,41 @@
 </div>
 </div>
 </div>
+<script>
+    $(function() {
+
+        $('.tombolTambahData').on('click', function() {
+            $('#formModalLabel').html('Tambah Data Guru');
+            $('.modal-footer button[type=submit]').html('Tambah Data');
+            $('#nama').val('');
+            $('#jenis_kelamin').val('');
+            $('#alamat').val('');
+            $('#mapel').val('');
+            $('#id').val('');
+        });
+
+        $('.tampilModalUbah').on('click', function() {
+
+            $('#formModalLabel').html('Ubah Data Guru');
+            $('.modal-footer button[type=submit]').html('Ubah Data');
+            $('.modal-body form').attr('action', 'http://localhost/mvc/guru/ubah');
+
+            const id = $(this).data('id');
+            $.ajax({
+                url: 'http://localhost/mvc/guru/getubah',
+                data: {
+                    id: id
+                },
+                method: 'post',
+                dataType: 'json',
+                success: function(data) {
+                    $('#nama').val(data.nama);
+                    $('#jenis_kelamin').val(data.jenis_kelamin);
+                    $('#alamat').val(data.alamat);
+                    $('#mapel').val(data.mapel);
+                    $('#id').val(data.id);
+                }
+            });
+        });
+    });
+</script>

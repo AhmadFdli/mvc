@@ -1,15 +1,15 @@
 <div class="container mt-5">
-    <div class="row">
+    <div class="row" style="margin-top: 100px;">
         <div class="col-6">
             <?php FLasher::flash(); ?>
-            <h3>Daftar Keahlian</h3>
+            <h3>DAFTAR KEAHLIAN</h3>
             <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#modal">
                 Tambah Keahlian
             </button>
             <!-- Modal -->
             <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
-                    <div class="modal-content">
+                    <div style="background-color: skyblue;" class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Tambah Keahlian</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -23,15 +23,16 @@
                                     <label for="nama">Nama</label>
                                     <input type="text" class="form-control" id="nama" name="nama" autocomplete="off">
                                 </div>
+                                <div class="form-group">
+                                    <label for="detail">Detail</label>
+                                    <input type="text" class="form-control" id="detail" name="detail" autocomplete="off">
+                                </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">
-                                Close
                             </button> <button type="submit" class="btn btn-primary">Tambah Data</button>
                         </div>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -45,6 +46,9 @@
                     </th>
                     <th scope="col">
                         <center>Nama</center>
+                    </th>
+                    <th scope="col">
+                        <center>Detail</center>
                     </th>
                     <th scope="col">
                         <center>Aksi</center>
@@ -64,17 +68,19 @@
                             <center><?= $blog['nama'] ?></center>
                         </td>
                         <td>
+                            <center><?= $blog['detail'] ?></center>
+                        </td>
+                        <td>
                             <center>
 
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#moll<?= $blog['id'] ?>">
                                     Detail
                                 </button>
-
                                 <!-- Modal -->
                                 <div class="modal fade" id="moll<?= $blog['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
+                                        <div style="background-color: skyblue;" class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel">Detail</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -87,6 +93,10 @@
                                                     <div class="form-group">
                                                         <label for="nama">Nama</label>
                                                         <input type="text" class="form-control" id="nama" value="<?= $blog['nama'] ?>" name="nama" readonly>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="detail">Detail</label>
+                                                        <input type="text" class="form-control" id="detail" value="<?= $blog['detail'] ?>" name="detail" readonly>
                                                     </div>
                                             </div>
                                             <div class="modal-footer">
@@ -104,7 +114,7 @@
     <!-- Modal -->
     <div class="modal fade" id="exampleModal<?= $blog['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <div style="background-color: skyblue;" class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Ubah Data</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -117,6 +127,10 @@
                         <div class="form-group">
                             <label for="nama">Nama</label>
                             <input type="text" class="form-control" id="nama" value="<?= $blog['nama'] ?>" name="nama" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="detail">Detail</label>
+                            <input type="text" class="form-control" id="detail" value="<?= $blog['detail'] ?>" name="detail" autocomplete="off">
                         </div>
                 </div>
                 <div class="modal-footer">

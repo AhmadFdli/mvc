@@ -8,7 +8,16 @@
   <title>Halaman <?= $data['judul'] ?></title>
   <style>
     body {
-      background-color: #f2f2f2;
+      background-color: #279EFF;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      left: 0;
+      z-index: 2;
+      background-color: #0C356A;
     }
 
     .nav-link,
@@ -17,27 +26,32 @@
       font-weight: 600;
       text-decoration: none;
       color: white;
-      margin-bottom: 10px;
+      margin: 10px 10px 10px 10px;
+      padding: 10px;
+      transition: 0.5s;
     }
   </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg" style="background-color: #2a3132;">
+  <nav class="navbar navbar-expand-lg position-fixed">
     <div class="collapse navbar-collapse" id="navbarNav" style="margin-left:8%;">
-      <a class="navbar-brand" href="<?= BASE_URL; ?>/home"> AhmadFadli.</a>
+      <a class="navbar-brand" style="font-weight: bold; color:white;">A<span style=" font-style: italic; font-weight: bold;">Fadli</span>.</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <ul class="navbar-nav">
+      <ul class="navbar-nav" style="justify-content: end;">
         <li class="nav-item active">
-          <a class="nav-link" href="<?= BASE_URL; ?>/jurusan">Kompetensi Keahlian <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="<?= BASE_URL; ?>/home">Home</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="<?= BASE_URL; ?>/guru">Data Guru</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="<?= BASE_URL; ?>/siswa">Data Siswa</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="<?= BASE_URL; ?>/jurusan">Kompetensi Keahlian <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="<?= BASE_URL; ?>/user/profile">About</a>
